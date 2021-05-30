@@ -3,7 +3,7 @@
     "path": "C:/Work/Learning/Current_Work/madiba-cv/cv.rmd",
     "project_path": "cv.rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "2110405220",
     "contents": "",
     "dirty": false,
     "created": 1621723533909.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "136,4",
-        "scrollLine": "120"
+        "cursorPosition": "61,62",
+        "scrollLine": "54"
     },
     "folds": "",
-    "lastKnownWriteTime": 1622381970,
+    "lastKnownWriteTime": 1622389068,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1622381970104,
+    "last_content_update": 1622389068840,
     "read_only": false,
     "read_only_alternatives": []
 }

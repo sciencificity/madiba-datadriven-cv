@@ -6,7 +6,7 @@ params:
   pdf_mode:
     value: true
   sheet_is_publicly_readable:
-    value: false
+    value: true
 output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
@@ -57,9 +57,9 @@ datadrivencv::build_network_logo(CV$entries_data)
 
 ```{r}
 if(params$pdf_mode){
-  cat("View this CV online with links at _C:/Work/Learning/Current_Work/madiba-cv_")
+  cat("View this CV online with links at _https://sciencificity.github.io/madiba-datadriven-cv/_")
 } else {
-  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](C:/Work/Learning/Current_Work/madiba-cv/nelson-mandela.pdf)")
+  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/sciencificity/madiba-datadriven-cv/blob/master/cv.pdf)")
 }
 ```
 
@@ -86,7 +86,7 @@ Disclaimer {#disclaimer}
 
 Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
 
-The source code is available [on github.com/nstrayer/cv](C:/Work/Learning/Current_Work/madiba-cv).
+The source code is available on GitHub [sciencificity/madiba-datadriven-cv](https://github.com/sciencificity/madiba-datadriven-cv).
 
 Last updated on `r Sys.Date()`.
 
