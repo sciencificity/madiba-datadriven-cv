@@ -1,0 +1,206 @@
+---
+title: "Nelson Mandela's CV"
+author: Nelson Mandela
+date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
+  sheet_is_publicly_readable:
+    value: false
+output:
+  pagedown::html_resume:
+    css: ['dd_cv.css', 'resume']
+    self_contained: true
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+library(magrittr) # For the pipe
+source("cv_printing_functions.r")
+
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/1_6fzNA6MwDSjUBXjjV7ThJfKEYj8xxJO9i09IV1cVVY/edit#gid=917338460",  
+  pdf_mode = params$pdf_mode,
+  sheet_is_publicly_readable = params$sheet_is_publicly_readable
+)
+
+```
+
+
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>")
+}
+```
+
+
+Aside
+================================================================================
+
+```{r}
+# Build interactive network of positions colored by section
+# and connected if they occurred in the same year
+datadrivencv::build_network_logo(CV$entries_data)
+```
+
+
+```{r}
+if(params$pdf_mode){
+  cat("View this CV online with links at _C:/Work/Learning/Current_Work/madiba-cv_")
+} else {
+  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](C:/Work/Learning/Current_Work/madiba-cv/nelson-mandela.pdf)")
+}
+```
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_contact_info()
+```
+
+
+
+Language Skills {#skills}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_skill_bars()
+```
+
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
+
+The source code is available [on github.com/nstrayer/cv](C:/Work/Learning/Current_Work/madiba-cv).
+
+Last updated on `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+Nelson Mandela {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Born {data-icon=superpowers data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('born')
+```
+
+<br>
+<br>
+<br>
+<br>
+
+
+Education {data-icon=user-graduate data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('education')
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+Community Experience {data-icon=users}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+CV %<>% print_text_block('community_experience_aside')
+```
+:::
+
+
+```{r}
+CV %<>% print_section('community_positions')
+```
+
+<br>
+<br>
+
+Industry Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+CV %<>% print_text_block('industy_experience_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('industry_positions')
+```
+
+<!-- These breaks just force a new page so section doesnt get cut off -->
+<br>
+<br>
+
+Writing {data-icon=book}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+CV %<>% print_text_block('writing_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('writing')
+```
+
+<br>
+<br>
+
+Awards  {data-icon=award}
+--------------------------------------------------------------------------------
+
+
+```{r}
+CV %<>% print_section('awards')
+```
+
+<br>
+<br>
+
+```{r}
+CV %<>% print_links()
+```
+
